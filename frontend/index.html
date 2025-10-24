@@ -3,48 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sleep Debt Tracker</title>
-<link rel="stylesheet" href="./css/style.css">
+<title>Sleep Debt Tracker 💤</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>Sleep Debt Tracker Demo 💤</h1>
+<div class="container">
+  <h1>Sleep Debt Tracker</h1>
 
-<section>
-  <h2>Signup</h2>
-  <input type="text" id="signupName" placeholder="Name">
-  <input type="email" id="signupEmail" placeholder="Email">
-  <input type="password" id="signupPass" placeholder="Password">
-  <input type="number" id="signupGoal" placeholder="Sleep Goal (hrs)">
-  <button onclick="signup()">Sign Up</button>
-  <p id="signupMsg"></p>
-</section>
+  <section class="form-section">
+    <h2>Signup</h2>
+    <input type="text" id="signupName" placeholder="Name">
+    <input type="email" id="signupEmail" placeholder="Email">
+    <input type="password" id="signupPass" placeholder="Password">
+    <input type="number" id="signupGoal" placeholder="Sleep Goal (hrs)">
+    <button onclick="signup()">Sign Up</button>
+    <p id="signupMsg" class="msg"></p>
+  </section>
 
-<section>
-  <h2>Login</h2>
-  <input type="email" id="loginEmail" placeholder="Email">
-  <input type="password" id="loginPass" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <p id="loginMsg"></p>
-</section>
-
-<section>
-  <h2>Sleep Debt</h2>
-  <input type="number" id="debtUserId" placeholder="User ID">
-  <button onclick="getDebt()">Get Debt</button>
-  <p id="debtResult"></p>
-</section>
-
-<section>
-  <h2>Random Tip</h2>
-  <button onclick="getTip()">Get Tip</button>
-  <p id="tipResult"></p>
-</section>
-
-<section>
-  <h2>Leaderboard</h2>
-  <button onclick="getLeaderboard()">Show Leaderboard</button>
-  <pre id="leaderboard"></pre>
-</section>
+  <section class="form-section">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="loginMsg" class="msg"></p>
+  </section>
+</div>
 
 <script src="main.js"></script>
 </body>

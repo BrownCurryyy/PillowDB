@@ -1,12 +1,10 @@
 import express from "express";
 import cors from "cors";
-import sqlite3 from "sqlite3";
 
 import authRoutes from "./routes/authRoutes.js";
 import sleepRoutes from "./routes/sleepRoutes.js";
 import tipRoutes from "./routes/tipRoutes.js";
 import leaderboardRoutes from "./routes/leaderboard.js";
-import userRoutes from "./routes/userRoutes.js";
 
 import dbPromise from "./db.js";
 import usersModel from "./models/userModel.js";
@@ -19,31 +17,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 app.use((req, res, next) => {
   console.log("➡️  " + req.method + " " + req.url);
   next();
 });
 
-// Init DB and tables
 const db = await dbPromise;
 await db.exec(usersModel);
 await db.exec(sleepDebtModel);
 await db.exec(sleepLogsModel);
 await db.exec(tipsModel);
 await db.exec(affirmationsModel);
+console.log("🗄️  Tables ensured in database");
 
-// Mount routes
-app.use("/auth", authRoutes);
-app.use("/sleep", sleepRoutes);
-app.use("/tip", tipRoutes);
-app.use("/leaderboard", leaderboardRoutes);
+// Mount routes properly
+app.use("/auth", authRoutes); // just router
+app.use("/sleep", sleepRoutes(db, sleepLogsModel, sleepDebtModel));
+app.use("/tip", tipRoutes(db, tipsModel, sleepLogsModel, usersModel));
+app.use("/leaderboard", leaderboardRoutes(db, sleepLogsModel, usersModel));
 
-app.use("/api/users", userRoutes);
-app.use("/api/sleep", sleepRoutes);
-app.use("/api/tips", tipRoutes);
-app.use("/api/leaderboard", leaderboardRoutes);
+app.get("/", (req, res) => res.send("Sleep Debt Tracker backend running 💤"));
 
-app.get("/", (req,res)=>res.send("Sleep Debt Tracker backend running 💤"));
-
-app.listen(3000, ()=>console.log("✅ Server running on http://localhost:3000"));
+app.listen(3000, () => console.log("✅ Server running on http://localhost:3000"));

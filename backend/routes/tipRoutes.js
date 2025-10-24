@@ -1,13 +1,22 @@
 import express from "express";
-import dbPromise from "../db.js";
 
-const router = express.Router();
+export default (db, tipsModel, sleepLogsModel, usersModel) => {
+  const router = express.Router();
 
-// Get random tip
-router.get("/", async (req,res)=>{
-  const db = await dbPromise;
-  const tip = await db.get("SELECT * FROM tips_and_tricks ORDER BY RANDOM() LIMIT 1");
-  res.json(tip || { message:"No tips yet" });
-});
+  router.get("/tips/:user_id", async (req, res) => {
+    const user_id = req.params.user_id;
+    try {
+      const logs = await sleepLogsModel.getLogsByUser(user_id);
+      // simple tip logic: if last debt > 2 hrs, give "bad" tip
+      const lastLog = logs[logs.length - 1];
+      const debt = Math.max(usersModel.sleep_goal - lastLog.total_sleep, 0);
+      const tips = await tipsModel.getTips();
+      const filteredTips = tips.filter(t => debt > 2 ? t.type === "bad" : t.type === "good");
+      res.json(filteredTips);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
 
-export default router;
+  return router;
+};

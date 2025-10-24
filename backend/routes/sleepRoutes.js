@@ -1,29 +1,27 @@
 import express from "express";
-import dbPromise from "../db.js";
 
-const router = express.Router();
+export default (db, sleepLogsModel, sleepDebtModel) => {
+  const router = express.Router();
 
-// Add a sleep log
-router.post("/log", async (req,res)=>{
-  const { user_id,total_sleep,sleep_time,date,debt_id } = req.body;
-  const db = await dbPromise;
-  await db.run(
-    "INSERT INTO sleep_logs (user_id,total_sleep,sleep_time,date,debt_id) VALUES (?,?,?,?,?)",
-    [user_id,total_sleep,sleep_time,date,debt_id]
-  );
-  res.json({ status:"ok" });
-});
+  router.get("/logs/:user_id", async (req, res) => {
+    const user_id = req.params.user_id;
+    try {
+      const logs = await sleepLogsModel.getLogsByUser(user_id);
+      res.json(logs);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
 
-// Get sleep debt for user dynamically
-router.get("/debt/:user_id", async (req,res)=>{
-  const { user_id } = req.params;
-  const db = await dbPromise;
-  const user = await db.get("SELECT sleep_goal FROM users WHERE user_id=?",[user_id]);
-  if(!user) return res.status(404).json({error:"User not found"});
-  const logs = await db.all("SELECT total_sleep FROM sleep_logs WHERE user_id=?",[user_id]);
-  let totalDebt = 0;
-  logs.forEach(l=> totalDebt += Math.max(user.sleep_goal - l.total_sleep,0));
-  res.json({ user_id, totalDebt });
-});
+  router.get("/debt/:user_id", async (req, res) => {
+    const user_id = req.params.user_id;
+    try {
+      const debt = await sleepDebtModel.getDebtByUser(user_id);
+      res.json({ debt });
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
 
-export default router;
+  return router;
+};

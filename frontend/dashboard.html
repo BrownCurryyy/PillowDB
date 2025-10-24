@@ -4,39 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sleep Debt Dashboard 💤</title>
-<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="./css/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>Sleep Debt Tracker Dashboard</h1>
+    <h1>Sleep Debt Dashboard</h1>
+    <p id="userGreeting">Hello, User!</p>
     <button id="logoutBtn">Logout</button>
   </header>
 
-  <section class="user-info">
-    <h2>Welcome, <span id="username"></span></h2>
-    <p>Your sleep goal: <span id="sleepGoal"></span> hrs</p>
+  <section>
+    <h2>Your Sleep Debt</h2>
+    <p id="debtResult">Loading...</p>
+    <canvas id="debtChart" width="400" height="200"></canvas>
   </section>
 
-  <section class="stats">
-    <h2>Total Sleep Debt</h2>
-    <p id="totalDebt">Loading...</p>
+  <section>
+    <h2>Previous Sleep Logs</h2>
+    <table id="logsTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Total Sleep (hrs)</th>
+          <th>Debt (hrs)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </section>
 
-  <section class="recent-logs">
-    <h2>Recent Sleep Logs</h2>
-    <ul id="logsList"></ul>
-  </section>
-
-  <section class="tip">
-    <h2>Random Tip</h2>
-    <p id="tipText">Loading...</p>
-    <button id="newTipBtn">Get New Tip</button>
-  </section>
-
-  <section class="leaderboard">
-    <h2>Leaderboard</h2>
-    <ol id="leaderboardList"></ol>
+  <section>
+    <h2>Tips</h2>
+    <p id="tipResult">Tips based on your sleep debt will appear here.</p>
   </section>
 </div>
 
