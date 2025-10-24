@@ -1,136 +1,72 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
 
 body {
-  background-color: #0D0D23;
+  background: linear-gradient(to right, #0D0D23, #1A1A3D);
   color: #B2B2FF;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   min-height: 100vh;
-  padding: 2rem;
-}
-
-.container {
-  background-color: #1A1A3D;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(128, 0, 255, 0.5);
-  width: 1000px;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for desktop */
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-  grid-column: 1 / -1; /* span full width */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
-header .logo {
-  width: 60px;
-}
-
-header h1 {
-  color: #D3BFFF;
-  font-size: 2rem;
-}
-
-#userGreeting {
-  font-size: 1rem;
-  color: #B2B2FF;
-}
-
-button {
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #fff;
-  background: linear-gradient(90deg, #9B59B6, #2980B9);
-  transition: 0.3s;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #8E44AD, #2471A3);
-}
-
-input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 0.8rem;
-  border-radius: 10px;
-  border: 1px solid #444;
+  padding: 1rem 2rem;
   background-color: #121233;
-  color: #B2B2FF;
+  box-shadow: 0 0 15px rgba(128,0,255,0.4);
 }
 
-input::placeholder {
-  color: #B2B2FF99;
+header .logo { width: 60px; }
+header h1 { font-size: 1.8rem; color: #D3BFFF; }
+header #userGreeting { font-size: 1rem; }
+header button { padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; background: linear-gradient(90deg,#9B59B6,#2980B9); color:#0D0D23; cursor:pointer; transition:0.3s; }
+header button:hover { background: linear-gradient(90deg,#8E44AD,#2471A3); }
+
+main {
+  flex: 1;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
-/* Sections */
-section {
-  background-color: #121233;
-  padding: 1rem;
+/* Add Sleep */
+.add-sleep, .logs-section, .tips-section {
+  background-color: #1A1A3D;
+  padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(128,0,255,0.3);
+  box-shadow: 0 0 15px rgba(128,0,255,0.3);
 }
 
-/* Charts, tables, tips */
-#debtChart {
-  margin-top: 1rem;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th, td {
-  padding: 0.6rem;
-  text-align: center;
-  border-bottom: 1px solid #444;
-}
-
-th {
-  color: #D3BFFF;
-}
-
-tr:nth-child(even) {
-  background-color: #121233;
-}
-
-#tipResult {
-  margin-top: 0.5rem;
-  color: #FFB2FF;
-  font-weight: 500;
-}
-
-/* Form inside dashboard (Add Sleep) */
 .add-sleep input, .add-sleep button {
-  margin-bottom: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.8rem;
 }
 
-/* Responsive: stack for smaller screens */
+.msg { text-align: center; margin-top: 0.5rem; color: #FF7BFF; font-weight: 500; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+th, td { padding: 0.6rem; text-align: center; border-bottom: 1px solid #444; }
+th { color: #D3BFFF; }
+tr:nth-child(even) { background-color: #121233; }
+
+/* Chart */
+canvas { width: 100% !important; height: 250px !important; }
+
+/* Tips */
+.tips-section pre { white-space: pre-wrap; font-size: 1rem; line-height: 1.5; color: #B2B2FF; }
+
+/* Full width for small screens */
 @media (max-width: 1000px) {
-  .container {
-    grid-template-columns: 1fr;
-    width: 90%;
-  }
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
+  main { grid-template-columns: 1fr; }
+}
+
+.btn{
+  padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; background: linear-gradient(90deg,#9B59B6,#2980B9); color:#0D0D23; cursor:pointer; transition:0.3s; margin-top: 1rem;
+}
+
+.input{
+  width: 100%; padding: 0.5rem; margin-bottom: 0.8rem; border-radius: 8px; border: 1px solid #444; background-color: #121233; color: #B2B2FF;
 }

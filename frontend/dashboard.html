@@ -1,55 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sleep Debt Dashboard 💤</title>
-<link rel="stylesheet" href="css/dashboard.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Debt Dashboard 💤</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="container">
   <header>
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1>Sleep Debt Dashboard</h1>
-    <p id="userGreeting">Hello, User!</p>
-    <button id="logoutBtn">Logout</button>
+    <img src="logo.png" class="logo">
+    <h1>Sleep Debt Tracker</h1>
+    <div>
+      <span id="userGreeting">Hello, User!</span>
+      <button id="logoutBtn">Logout</button>
+    </div>
   </header>
 
-  <section class="add-sleep">
-    <h2>Add New Sleep</h2>
-    <input type="date" id="sleepDate">
-    <input type="number" id="sleepHours" placeholder="Hours Slept">
-    <button id="addSleepBtn">Add Sleep</button>
-    <p id="sleepMsg" class="msg"></p>
-  </section>
+  <main>
+    <section class="add-sleep">
+      <h2>Log New Sleep</h2>
+      <input type="date" id="sleepDate" class="input">
+      <input type="number" id="sleepHours" placeholder="Hours slept" class="input">
+      <button id="addSleepBtn" class="btn">Add Sleep</button>
+      <p id="sleepMsg" class="msg"></p>
+    </section>
 
-  <section>
-    <h2>Your Sleep Debt</h2>
-    <p id="debtResult">Loading...</p>
-    <canvas id="debtChart" width="400" height="200"></canvas>
-  </section>
+    <section class="logs-section">
+      <h2>Sleep Logs & Debt</h2>
+      <table id="logsTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Total Sleep (hrs)</th>
+            <th>Debt (hrs)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="debtResult">Your total sleep debt: 0 hrs</p>
+      <canvas id="debtChart" style="width:100%; height:350px;"></canvas>
 
-  <section>
-    <h2>Previous Sleep Logs</h2>
-    <table id="logsTable">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Total Sleep (hrs)</th>
-          <th>Debt (hrs)</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+    </section>
 
-  <section>
-    <h2>Tips & Affirmations</h2>
-    <p id="tipResult">Tips will appear here if due.</p>
-  </section>
-</div>
+    <section class="tips-section">
+      <h2>Tips & Affirmations</h2>
+      <pre id="tipResult">Loading tips...if any for you🙃</pre>
+    </section>
+  </main>
 
-<script src="dashboard.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>

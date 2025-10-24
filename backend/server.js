@@ -23,9 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// Init DB and create tables
+// DB init
 const db = await dbPromise;
 
+// Create tables
 await db.exec(`
 CREATE TABLE IF NOT EXISTS users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,7 +36,6 @@ CREATE TABLE IF NOT EXISTS users (
   sleep_goal INTEGER
 );
 `);
-
 await db.exec(`
 CREATE TABLE IF NOT EXISTS sleep_debt (
   debt_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS sleep_debt (
   total_debt INTEGER DEFAULT 0
 );
 `);
-
 await db.exec(`
 CREATE TABLE IF NOT EXISTS sleep_logs (
   log_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,7 +55,6 @@ CREATE TABLE IF NOT EXISTS sleep_logs (
   FOREIGN KEY(debt_id) REFERENCES sleep_debt(debt_id)
 );
 `);
-
 await db.exec(`
 CREATE TABLE IF NOT EXISTS tips_and_tricks (
   tip_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,7 +62,6 @@ CREATE TABLE IF NOT EXISTS tips_and_tricks (
   category TEXT
 );
 `);
-
 await db.exec(`
 CREATE TABLE IF NOT EXISTS affirmations (
   user_id INTEGER,
@@ -78,14 +75,22 @@ CREATE TABLE IF NOT EXISTS affirmations (
 
 console.log("🗄️  Tables ensured in database");
 
-// Mount routes with proper models
+// 🔹 Init models (call factory functions with db)
+const users = usersModel(db);
+const sleepLogs = sleepLogsModel(db);
+const sleepDebt = sleepDebtModel(db);
+const tips = tipsModel(db);
+const affirmations = affirmationsModel(db);
+
+// Mount routes with model instances
 app.use("/auth", authRoutes);
-app.use("/sleep", sleepRoutes(db, sleepLogsModel, sleepDebtModel));
-app.use("/tip", tipRoutes(db, tipsModel, sleepLogsModel, usersModel));
-app.use("/leaderboard", leaderboardRoutes(db, sleepLogsModel, usersModel));
+app.use("/sleep", sleepRoutes(db, sleepLogs, sleepDebt));
+app.use("/tip", tipRoutes(db, tips, sleepLogs, users));
+app.use("/leaderboard", leaderboardRoutes(db, sleepLogs, users));
 
 app.get("/", (req, res) => res.send("Sleep Debt Tracker backend running 💤"));
 
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: err.message });
