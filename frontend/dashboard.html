@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Debt Dashboard 💤</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Sleep Debt Tracker Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <section class="user-info">
+    <h2>Welcome, <span id="username"></span></h2>
+    <p>Your sleep goal: <span id="sleepGoal"></span> hrs</p>
+  </section>
+
+  <section class="stats">
+    <h2>Total Sleep Debt</h2>
+    <p id="totalDebt">Loading...</p>
+  </section>
+
+  <section class="recent-logs">
+    <h2>Recent Sleep Logs</h2>
+    <ul id="logsList"></ul>
+  </section>
+
+  <section class="tip">
+    <h2>Random Tip</h2>
+    <p id="tipText">Loading...</p>
+    <button id="newTipBtn">Get New Tip</button>
+  </section>
+
+  <section class="leaderboard">
+    <h2>Leaderboard</h2>
+    <ol id="leaderboardList"></ol>
+  </section>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
