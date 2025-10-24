@@ -1,10 +1,11 @@
-export default `
-CREATE TABLE IF NOT EXISTS affirmations (
-  user_id INTEGER,
-  tip_id INTEGER,
-  date TEXT,
-  PRIMARY KEY(user_id, tip_id),
-  FOREIGN KEY(user_id) REFERENCES users(user_id),
-  FOREIGN KEY(tip_id) REFERENCES tips_and_tricks(tip_id)
-);
-`;
+export default (db) => ({
+  addAffirmation: async (user_id, tip_id, date) => {
+    return db.run(
+      "INSERT INTO affirmations (user_id, tip_id, date) VALUES (?,?,?)",
+      [user_id, tip_id, date]
+    );
+  },
+  getAffirmationsByUser: async (user_id) => {
+    return db.all("SELECT * FROM affirmations WHERE user_id=?", [user_id]);
+  }
+});

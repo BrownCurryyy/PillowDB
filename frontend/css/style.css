@@ -7,8 +7,8 @@
 }
 
 body {
-  background-color: #121212;
-  color: #FFD700;
+  background-color: #0F0F23;
+  color: #C0AFFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,27 +16,48 @@ body {
 }
 
 .container {
-  background-color: #1E1E1E;
+  background-color: #1B1B35;
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(192, 175, 255, 0.3);
   width: 350px;
+  text-align: center;
 }
 
-h1 {
-  text-align: center;
+.logo {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 80px;
+  height: auto;
+}
+
+.toggle-switch {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(192, 175, 255, 0.2);
 }
 
-.form-section {
-  margin-bottom: 2rem;
+.toggle-switch button {
+  flex: 1;
+  padding: 0.7rem 0;
+  border: none;
+  background-color: #2B2B50;
+  color: #C0AFFF;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.form-section h2 {
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-  text-align: center;
-  color: #FFD700;
+.toggle-switch button.active {
+  background-color: #7E5FFF;
+  color: #fff;
+}
+
+.toggle-switch button:hover:not(.active) {
+  background-color: #3B3B70;
 }
 
 input {
@@ -45,32 +66,42 @@ input {
   margin-bottom: 0.8rem;
   border: 1px solid #444;
   border-radius: 8px;
-  background-color: #1A1A1A;
-  color: #FFD700;
+  background-color: #1E1E35;
+  color: #C0AFFF;
 }
 
 input::placeholder {
-  color: #FFD70099;
+  color: #C0AFFF99;
 }
 
-button {
+button.form-btn {
   width: 100%;
   padding: 0.7rem;
-  background-color: #FFD700;
+  background-color: #7E5FFF;
   border: none;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  color: #fff;
   transition: 0.2s;
-  color: #121212;
 }
 
-button:hover {
-  background-color: #e6c200;
+button.form-btn:hover {
+  background-color: #6845E0;
 }
 
 .msg {
   text-align: center;
   margin-top: 0.5rem;
   font-weight: 500;
+}
+
+.btn{
+  background-color: #7E5FFF;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
 }

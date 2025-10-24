@@ -1,42 +1,94 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: #FFD700;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #0D0D23;
+  color: #B2B2FF;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
 }
 
 .container {
-  max-width: 900px;
-  margin: 2rem auto;
+  background-color: #1A1A3D;
   padding: 2rem;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(128, 0, 255, 0.5);
+  width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns for desktop */
+  grid-gap: 2rem;
 }
 
 header {
+  grid-column: 1 / -1; /* span full width */
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
-h1, h2 {
-  color: #FFD700;
+header .logo {
+  width: 60px;
+}
+
+header h1 {
+  color: #D3BFFF;
+  font-size: 2rem;
+}
+
+#userGreeting {
+  font-size: 1rem;
+  color: #B2B2FF;
 }
 
 button {
-  background-color: #FFD700;
-  color: #1e1e1e;
+  padding: 0.6rem 1rem;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #9B59B6, #2980B9);
+  transition: 0.3s;
 }
 
 button:hover {
-  background-color: #e6c200;
+  background: linear-gradient(90deg, #8E44AD, #2471A3);
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background-color: #121233;
+  color: #B2B2FF;
+}
+
+input::placeholder {
+  color: #B2B2FF99;
+}
+
+/* Sections */
+section {
+  background-color: #121233;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(128,0,255,0.3);
+}
+
+/* Charts, tables, tips */
+#debtChart {
+  margin-top: 1rem;
 }
 
 table {
@@ -46,19 +98,39 @@ table {
 }
 
 th, td {
-  padding: 0.5rem;
-  border: 1px solid #FFD700;
+  padding: 0.6rem;
   text-align: center;
+  border-bottom: 1px solid #444;
 }
 
 th {
-  background-color: #2a2a2a;
+  color: #D3BFFF;
 }
 
 tr:nth-child(even) {
-  background-color: #1b1b1b;
+  background-color: #121233;
 }
 
-canvas {
-  margin-top: 1rem;
+#tipResult {
+  margin-top: 0.5rem;
+  color: #FFB2FF;
+  font-weight: 500;
+}
+
+/* Form inside dashboard (Add Sleep) */
+.add-sleep input, .add-sleep button {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive: stack for smaller screens */
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }

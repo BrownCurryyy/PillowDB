@@ -4,16 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sleep Debt Dashboard 💤</title>
-<link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href="css/dashboard.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="container">
   <header>
+    <img src="logo.png" alt="Logo" class="logo">
     <h1>Sleep Debt Dashboard</h1>
     <p id="userGreeting">Hello, User!</p>
     <button id="logoutBtn">Logout</button>
   </header>
+
+  <section class="add-sleep">
+    <h2>Add New Sleep</h2>
+    <input type="date" id="sleepDate">
+    <input type="number" id="sleepHours" placeholder="Hours Slept">
+    <button id="addSleepBtn">Add Sleep</button>
+    <p id="sleepMsg" class="msg"></p>
+  </section>
 
   <section>
     <h2>Your Sleep Debt</h2>
@@ -36,8 +45,8 @@
   </section>
 
   <section>
-    <h2>Tips</h2>
-    <p id="tipResult">Tips based on your sleep debt will appear here.</p>
+    <h2>Tips & Affirmations</h2>
+    <p id="tipResult">Tips will appear here if due.</p>
   </section>
 </div>
 

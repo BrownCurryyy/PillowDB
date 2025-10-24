@@ -1,7 +1,8 @@
-export default `
-CREATE TABLE IF NOT EXISTS sleep_debt (
-  debt_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  sleep_debt INTEGER DEFAULT 0,
-  total_debt INTEGER DEFAULT 0
-);
-`;
+export default (db) => ({
+  getDebtByUser: async (user_id) => {
+    return db.get(
+      "SELECT * FROM sleep_debt WHERE debt_id=(SELECT debt_id FROM sleep_logs WHERE user_id=? LIMIT 1)",
+      [user_id]
+    );
+  }
+});

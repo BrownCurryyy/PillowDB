@@ -8,27 +8,50 @@
 </head>
 <body>
 <div class="container">
-  <h1>Sleep Debt Tracker</h1>
+  <img src="logo.png" alt="Logo" class="logo">
 
-  <section class="form-section">
-    <h2>Signup</h2>
+  <div class="toggle-switch">
+    <button id="loginToggle" class="active">Login</button>
+    <button id="signupToggle">Signup</button>
+  </div>
+
+  <section class="form-section" id="loginForm">
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button onclick="login()" class="btn">Login</button>
+    <p id="loginMsg" class="msg"></p>
+  </section>
+
+  <section class="form-section" id="signupForm" style="display:none;">
     <input type="text" id="signupName" placeholder="Name">
     <input type="email" id="signupEmail" placeholder="Email">
     <input type="password" id="signupPass" placeholder="Password">
     <input type="number" id="signupGoal" placeholder="Sleep Goal (hrs)">
-    <button onclick="signup()">Sign Up</button>
+    <button onclick="signup()" class="btn">Sign Up</button>
     <p id="signupMsg" class="msg"></p>
-  </section>
-
-  <section class="form-section">
-    <h2>Login</h2>
-    <input type="email" id="loginEmail" placeholder="Email">
-    <input type="password" id="loginPass" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="loginMsg" class="msg"></p>
   </section>
 </div>
 
 <script src="main.js"></script>
+<script>
+  const loginBtn = document.getElementById("loginToggle");
+const signupBtn = document.getElementById("signupToggle");
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+loginBtn.addEventListener("click", () => {
+  loginBtn.classList.add("active");
+  signupBtn.classList.remove("active");
+  loginForm.style.display = "block";
+  signupForm.style.display = "none";
+});
+
+signupBtn.addEventListener("click", () => {
+  signupBtn.classList.add("active");
+  loginBtn.classList.remove("active");
+  signupForm.style.display = "block";
+  loginForm.style.display = "none";
+});
+</script>
 </body>
 </html>

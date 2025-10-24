@@ -1,12 +1,15 @@
-export default `
-CREATE TABLE IF NOT EXISTS sleep_logs (
-  log_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id INTEGER,
-  total_sleep INTEGER,
-  sleep_time TEXT,
-  date TEXT,
-  debt_id INTEGER,
-  FOREIGN KEY(user_id) REFERENCES users(user_id),
-  FOREIGN KEY(debt_id) REFERENCES sleep_debt(debt_id)
-);
-`;
+export default (db) => ({
+  addLog: async (user_id, date, total_sleep) => {
+    return db.run(
+      "INSERT INTO sleep_logs (user_id, date, total_sleep) VALUES (?,?,?)",
+      [user_id, date, total_sleep]
+    );
+  },
+
+  getLogsByUser: async (user_id) => {
+    return db.all(
+      "SELECT * FROM sleep_logs WHERE user_id=? ORDER BY date ASC",
+      [user_id]
+    );
+  }
+});
