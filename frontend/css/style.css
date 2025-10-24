@@ -1,73 +1,76 @@
-/* style.css & dashboard.css combined */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: #FFD700;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #FFD700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-  width: 90%;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #1c1c1c;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #000;
+  background-color: #1E1E1E;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  width: 350px;
 }
 
-h1, h2 {
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  text-align: center;
   color: #FFD700;
-}
-
-input, button {
-  display: block;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
 }
 
 input {
   width: 100%;
-  background-color: #2a2a2a;
+  padding: 0.7rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #1A1A1A;
   color: #FFD700;
 }
 
+input::placeholder {
+  color: #FFD70099;
+}
+
 button {
+  width: 100%;
+  padding: 0.7rem;
   background-color: #FFD700;
-  color: #121212;
-  cursor: pointer;
+  border: none;
+  border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #121212;
 }
 
 button:hover {
   background-color: #e6c200;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th, td {
-  padding: 0.5rem;
-  border: 1px solid #333;
-  text-align: center;
-}
-
-th {
-  background-color: #2a2a2a;
-}
-
-tr:nth-child(even) {
-  background-color: #1a1a1a;
-}
-
 .msg {
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-  color: brown;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 500;
 }

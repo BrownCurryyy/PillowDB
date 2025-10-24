@@ -1,4 +1,4 @@
-const API = "http://localhost:3000"; // backend URL
+const API = "http://localhost:3000";
 
 // SIGNUP
 async function signup() {
@@ -65,10 +65,9 @@ async function login() {
     if (res.ok) {
       msgEl.style.color = "green";
       msgEl.textContent = "Login successful!";
-      // FIXED: match authRoutes response
       const user = { user_id: data.user_id, name: data.name };
       localStorage.setItem("loggedInUser", JSON.stringify(user));
-      window.location.href = "dashboard.html"; // redirect to dashboard
+      window.location.href = "dashboard.html";
     } else {
       msgEl.textContent = data.error || "Invalid credentials";
     }
@@ -77,3 +76,9 @@ async function login() {
     console.error(err);
   }
 }
+
+// Auto-redirect if logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (user) window.location.href = "dashboard.html";
+});
